@@ -155,6 +155,24 @@
     }
     .about-contact:hover { color: var(--brown); }
 
+    .about h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 1.6rem 0 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-meta {
+      margin-top: 1.4rem;
+    }
+
+    .about-meta img {
+      height: 20px;
+    }
+
     /* ── Main grid ── */
     main {
       position: relative;
@@ -277,10 +295,22 @@
     <div class="about-text">
       <span class="tag">About</span>
       <h2>Rotem Zelingher</h2>
-      <p>I'm an applied economist specialising in time series forecasting, machine learning, and statistical inference. I develop open, interpretable frameworks that combine econometric theory with machine learning for robust price prediction.</p>
-      <p><strong>AGRICAF</strong> (Agricultural Commodity Forecasting Framework) is an open-source pipeline for forecasting global agricultural commodity prices — monthly, up to one year ahead — with a focus on policy relevance and accessibility for non-specialist stakeholders in low-income contexts.</p>
+      <p>Hi! I'm an applied economist specialising in time series forecasting, machine learning, and statistical inference. I develop open, interpretable frameworks that combine econometric theory with machine learning for robust price prediction.</p>
       <p class="about-belief">Good forecasts should come with good explanations — and both should be available to everyone.</p>
-      <a class="about-contact" href="mailto:rotem.zelingher@wu.ac.at">📬 rotem.zelingher@wu.ac.at</a>
+      <a class="about-contact" href="mailto:rotem.zelingher@wu.ac.at">📬 I welcome questions, collaborations, and feedback: rotem.zelingher@wu.ac.at</a>
+
+      <h3>The AGRICAF Framework</h3>
+      <p><strong>AGRICAF</strong> (Agricultural Commodity Forecasting Framework) is an open-source pipeline integrating multiple statistical and ML methods for forecasting global agricultural commodity prices (monthly, up to one year ahead).</p>
+      <p>The framework emphasises transparency and policy relevance, with a particular focus on making price forecasts and market intelligence accessible to non-specialist and vulnerable stakeholders in low-income contexts.</p>
+
+      <h3>This Repository</h3>
+      <p>This repository presents <strong>Stage 4</strong> of AGRICAF: explainability and communication of forecasts across multiple audience levels.</p>
+
+      <div class="about-meta">
+        <a href="https://doi.org/10.5281/zenodo.19148941" target="_blank">
+          <img src="https://zenodo.org/badge/1180637670.svg" alt="DOI"/>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -334,11 +364,4 @@
 <footer>
   <p>
     AGRICAF Framework · 
-    <a href="https://github.com/RotemZel/communicate-wheat-forecasts" target="_blank">GitHub Repository</a>
-    &nbsp;·&nbsp;
-    WU Vienna · Marie Skłodowska-Curie Postdoctoral Fellowship
-  </p>
-</footer>
-
-</body>
-</html>
+    <a href="https://github.com/RotemZel/communicate-wheat-forecasts" target="_bl
