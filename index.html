@@ -99,6 +99,62 @@
       background: var(--warm3);
     }
 
+    /* ── About section ── */
+    .about {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, var(--warm1) 0%, var(--cream) 100%);
+      border-bottom: 1.5px solid var(--warm2);
+      padding: 3rem 2rem;
+    }
+
+    .about-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .about .tag {
+      margin-bottom: 0.8rem;
+    }
+
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+    }
+
+    .about-belief {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem !important;
+      color: var(--brown) !important;
+      border-left: 3px solid var(--warm3);
+      padding-left: 1rem;
+      margin: 1.4rem 0 !important;
+    }
+
+    .about-contact {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--warm4);
+      text-decoration: none;
+      border-bottom: 1px solid var(--warm3);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .about-contact:hover { color: var(--brown); }
+
     /* ── Main grid ── */
     main {
       position: relative;
@@ -214,8 +270,20 @@
     SHAP values, LIME surrogates, partial dependence, and feature interactions.
   </p>
   <div class="divider">✦</div>
-  <a href="https://github.com/RotemZel/communicate-wheat-forecasts#readme" target="_blank" style="display:inline-block; margin-top:1.2rem; font-size:0.1rem; color:var(--warm4); text-decoration:none; border-bottom: 1px solid var(--warm3); padding-bottom:1px;">About this project ↗</a>
 </header>
+
+<section class="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <span class="tag">About</span>
+      <h2>Rotem Zelingher</h2>
+      <p>I'm an applied economist specialising in time series forecasting, machine learning, and statistical inference. I develop open, interpretable frameworks that combine econometric theory with machine learning for robust price prediction.</p>
+      <p><strong>AGRICAF</strong> (Agricultural Commodity Forecasting Framework) is an open-source pipeline for forecasting global agricultural commodity prices — monthly, up to one year ahead — with a focus on policy relevance and accessibility for non-specialist stakeholders in low-income contexts.</p>
+      <p class="about-belief">Good forecasts should come with good explanations — and both should be available to everyone.</p>
+      <a class="about-contact" href="mailto:rotem.zelingher@wu.ac.at">📬 rotem.zelingher@wu.ac.at</a>
+    </div>
+  </div>
+</section>
 
 <main>
 
