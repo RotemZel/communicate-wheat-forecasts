@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AGRICAF · Wheat Price Forecast Figures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream:   #FFF8F0;
+      --warm1:   #FADEC9;
+      --warm2:   #F5C5A3;
+      --warm3:   #E8A87C;
+      --warm4:   #D4956B;
+      --brown:   #3D2B1F;
+      --text:    #4A3728;
+      --muted:   #9A7B6A;
+      --shadow:  rgba(61,43,31,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 1.5px solid var(--warm3);
+      background: linear-gradient(160deg, var(--warm1) 0%, var(--cream) 60%);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm4);
+      border: 1px solid var(--warm3);
+      border-radius: 2px;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--warm4);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Decorative wheat line ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem auto 0;
+      color: var(--warm3);
+      font-size: 1.1rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--warm3);
+    }
+
+    /* ── Main grid ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.4rem;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      border: 1.5px solid var(--warm2);
+      border-radius: 4px;
+      padding: 1.6rem 1.4rem 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 2px 8px var(--shadow);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.10s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.20s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Colour accent strip per card */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .card:nth-child(1)::before { background: var(--warm2); }
+    .card:nth-child(2)::before { background: var(--warm3); }
+    .card:nth-child(3)::before { background: var(--warm4); }
+    .card:nth-child(4)::before { background: var(--warm2); }
+    .card:nth-child(5)::before { background: var(--warm3); }
+    .card:nth-child(6)::before { background: var(--warm4); }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--shadow);
+      border-color: var(--warm3);
+    }
+
+    .card-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm4);
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-arrow {
+      font-size: 0.8rem;
+      color: var(--warm4);
+      margin-top: 0.4rem;
+      transition: transform 0.2s ease;
+    }
+    .card:hover .card-arrow { transform: translateX(4px); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--warm2);
+    }
+    footer a { color: var(--warm4); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="tag">AGRICAF · Wheat Price Forecasting</div>
+  <h1>Interactive <em>Forecast</em> Figures</h1>
+  <p class="subtitle">
+    Explainability visualizations for global wheat price forecasts —
+    SHAP values, LIME surrogates, partial dependence, and feature interactions.
+  </p>
+  <div class="divider">✦</div>
+</header>
+
+<main>
+
+  <a class="card" href="shapley_global_wheat.html">
+    <span class="card-label">SHAP · Global</span>
+    <span class="card-title">Shapley Global Importance</span>
+    <p class="card-desc">Average absolute SHAP values across all forecasts — which predictors drive wheat prices most consistently.</p>
+    <span class="card-arrow">Open figure →</span>
+  </a>
+
+  <a class="card" href="shapley_local_wheat.html">
+    <span class="card-label">SHAP · Local</span>
+    <span class="card-title">Shapley Local Explanations</span>
+    <p class="card-desc">Instance-level SHAP decompositions showing how each predictor contributes to a specific forecast.</p>
+    <span class="card-arrow">Open figure →</span>
+  </a>
+
+  <a class="card" href="shapley_pdp_wheat.html">
+    <span class="card-label">SHAP · PDP</span>
+    <span class="card-title">Partial Dependence Plots</span>
+    <p class="card-desc">Marginal effect of individual predictors on forecast output, averaged over the data distribution.</p>
+    <span class="card-arrow">Open figure →</span>
+  </a>
+
+  <a class="card" href="lime_global_wheat.html">
+    <span class="card-label">LIME · Global</span>
+    <span class="card-title">LIME Global Surrogates</span>
+    <p class="card-desc">Global summary of LIME local surrogate models — interpretable approximations of the forecast model.</p>
+    <span class="card-arrow">Open figure →</span>
+  </a>
+
+  <a class="card" href="lime_local_wheat.html">
+    <span class="card-label">LIME · Local</span>
+    <span class="card-title">LIME Local Surrogates</span>
+    <p class="card-desc">Per-observation LIME explanations highlighting which predictors matter most for individual forecasts.</p>
+    <span class="card-arrow">Open figure →</span>
+  </a>
+
+  <a class="card" href="interactions_wheat.html">
+    <span class="card-label">Interactions</span>
+    <span class="card-title">Feature Interactions</span>
+    <p class="card-desc">Friedman H-statistic visualisation — pairwise predictor interactions driving wheat price forecasts.</p>
+    <span class="card-arrow">Open figure →</span>
+  </a>
+
+</main>
+
+<footer>
+  <p>
+    AGRICAF Framework · 
+    <a href="https://github.com/RotemZel/communicate-wheat-forecasts" target="_blank">GitHub Repository</a>
+    &nbsp;·&nbsp;
+    WU Vienna · Marie Skłodowska-Curie Postdoctoral Fellowship
+  </p>
+</footer>
+
+</body>
+</html>
