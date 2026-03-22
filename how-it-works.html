@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AGRICAF · How It Works</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream:  #FFF8F0;
+      --warm1:  #FADEC9;
+      --warm2:  #F5C5A3;
+      --warm3:  #E8A87C;
+      --warm4:  #D4956B;
+      --warm5:  #C4845A;
+      --brown:  #3D2B1F;
+      --text:   #4A3728;
+      --muted:  #9A7B6A;
+      --shadow: rgba(61,43,31,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: relative;
+      z-index: 10;
+      background: white;
+      border-bottom: 1.5px solid var(--warm2);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--brown);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--brown); }
+
+    /* ── Main ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    /* ── Header ── */
+    .page-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm4);
+      border: 1px solid var(--warm3);
+      border-radius: 2px;
+      padding: 0.22rem 0.7rem;
+      margin-bottom: 1.1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.15;
+      margin-bottom: 2rem;
+    }
+    h1 em { font-style: italic; color: var(--warm4); }
+
+    /* ── Summary paragraph ── */
+    .summary {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      background: white;
+      border: 1.5px solid var(--warm2);
+      border-left: 4px solid var(--warm3);
+      border-radius: 4px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 2px 8px var(--shadow);
+      margin-bottom: 3rem;
+    }
+
+    /* ── Stage pills ── */
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .stage-pill {
+      background: white;
+      border: 1.5px solid var(--warm2);
+      border-radius: 4px;
+      padding: 1rem 1.1rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 6px var(--shadow);
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .stage-pill:nth-child(1) { animation-delay: 0.05s; }
+    .stage-pill:nth-child(2) { animation-delay: 0.10s; }
+    .stage-pill:nth-child(3) { animation-delay: 0.15s; }
+    .stage-pill:nth-child(4) { animation-delay: 0.20s; }
+
+    .stage-pill::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .stage-pill:nth-child(1)::before { background: var(--warm2); }
+    .stage-pill:nth-child(2)::before { background: var(--warm3); }
+    .stage-pill:nth-child(3)::before { background: var(--warm4); }
+    .stage-pill:nth-child(4)::before { background: var(--warm5); }
+
+    .stage-number {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .stage-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.25;
+    }
+
+    .stage-desc {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 0.3rem;
+    }
+
+    /* ── Workflow image ── */
+    .workflow-section {
+      text-align: center;
+    }
+
+    .workflow-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .workflow-image {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 4px;
+      border: 1.5px solid var(--warm2);
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--warm2);
+      background: white;
+    }
+    footer a { color: var(--warm4); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <a class="nav-brand" href="index.html">AGRICAF</a>
+  <a class="nav-back" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Back
+  </a>
+</nav>
+
+<!-- ── Content ── -->
+<div class="container">
+
+  <span class="page-tag">Methodology</span>
+  <h1>How <em>AGRICAF</em> Works</h1>
+
+  <p class="summary">
+    AGRICAF is a four-stage pipeline that transforms raw, publicly available data into explained commodity price forecasts. It begins by assembling and harmonising inputs from multiple sources — trade statistics, production figures, stock reports, and monthly price histories — into consistent predictor datasets. A screening stage then identifies which variables genuinely matter for each commodity, calendar month, and forecast horizon, using cross-validated ensemble ranking to reduce overfitting risk before any forecast is generated. The forecasting stage combines up to ten statistical and machine learning models under expanding-window cross-validation to produce monthly price predictions up to twelve months ahead, automatically selecting the most accurate model for each month-horizon pair. Finally, every forecast is explained using model-agnostic interpretability methods — Shapley values, LIME surrogates, partial dependence, and feature interaction statistics — organised into four communication levels that range from a global annual overview to a single instance-level prediction, so that results are accessible to researchers, policymakers, and practitioners alike.
+  </p>
+
+  <!-- Stage pills -->
+  <div class="stages">
+    <div class="stage-pill">
+      <div class="stage-number">Stage 1</div>
+      <div class="stage-name">Data Assembly</div>
+      <div class="stage-desc">Harmonise heterogeneous sources into 12 × 12 monthly price targets.</div>
+    </div>
+    <div class="stage-pill">
+      <div class="stage-number">Stage 2</div>
+      <div class="stage-name">Screening Predictors</div>
+      <div class="stage-desc">LOO-CV ensemble ranking retains the top predictors per month × horizon.</div>
+    </div>
+    <div class="stage-pill">
+      <div class="stage-number">Stage 3</div>
+      <div class="stage-name">Generating Forecasts</div>
+      <div class="stage-desc">10 models, expanding-window CV, auto-selected by cumulative error.</div>
+    </div>
+    <div class="stage-pill">
+      <div class="stage-number">Stage 4</div>
+      <div class="stage-name">Explaining Forecasts</div>
+      <div class="stage-desc">SHAP, LIME, PDP, and interactions across four communication levels.</div>
+    </div>
+  </div>
+
+  <!-- Workflow image -->
+  <div class="workflow-section">
+    <span class="workflow-label">AGRICAF Pipeline · Overview</span>
+    <img
+      class="workflow-image"
+      src="https://github.com/user-attachments/assets/a381b98b-4de1-4db5-9629-bce9c4fa77a4"
+      alt="AGRICAF four-stage workflow chart"
+    />
+  </div>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p style="font-family:'Playfair Display',serif; font-weight:700; color:var(--brown); margin-bottom:0.25rem;">AGRICAF</p>
+  <p>Agricultural Commodity Analysis and Forecasts</p>
+  <p style="margin-top:0.25rem;">
+    Rotem Zelingher · Vienna University of Economics and Business (WU) ·
+    <a href="https://github.com/RotemZel/communicate-wheat-forecasts" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>
