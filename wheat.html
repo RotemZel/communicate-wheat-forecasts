@@ -16,7 +16,7 @@
       --brown:  #3D2B1F;
       --text:   #4A3728;
       --muted:  #9A7B6A;
-      --shadow: rgba(61,43,31,0.12);
+      --shadow: rgba(61,43,31,0.10);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,6 +26,7 @@
       color: var(--text);
       font-family: 'Source Sans 3', sans-serif;
       font-weight: 300;
+      font-size: 1rem;
       min-height: 100vh;
     }
 
@@ -42,11 +43,11 @@
       position: relative;
       z-index: 10;
       background: white;
-      border-bottom: 1.5px solid var(--warm2);
       padding: 0.9rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      box-shadow: 0 1px 8px var(--shadow);
     }
 
     .nav-brand {
@@ -61,13 +62,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--brown); }
-    .nav-back svg { width: 14px; height: 14px; }
 
     /* ── Main container ── */
     .container {
@@ -75,32 +75,33 @@
       z-index: 1;
       max-width: 960px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 5rem;
+      padding: 3rem 1.5rem 6rem;
+      animation: fadeUp 0.4s ease both;
     }
 
     /* ── Commodity header ── */
     .commodity-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 1.2rem;
-      margin-bottom: 0.5rem;
-      animation: fadeUp 0.4s ease both;
+      margin-bottom: 2.5rem;
     }
 
-    .commodity-emoji { font-size: 3rem; line-height: 1; }
+    .commodity-emoji { font-size: 3rem; line-height: 1; flex-shrink: 0; }
 
     .commodity-header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 700;
       color: var(--brown);
       line-height: 1.15;
     }
 
     .commodity-header p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--muted);
-      margin-top: 0.3rem;
+      margin-top: 0.4rem;
+      line-height: 1.6;
     }
 
     .ra-badge {
@@ -108,172 +109,163 @@
       background: var(--warm1);
       border: 1px solid var(--warm3);
       color: var(--warm5);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.6rem;
+      letter-spacing: 0.06em;
+      padding: 0.22rem 0.7rem;
       border-radius: 99px;
-      margin-top: 0.4rem;
+      margin-top: 0.5rem;
     }
 
     /* ── Section label ── */
     .section-label {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 0.9rem;
-      margin-top: 2.8rem;
+      margin-bottom: 1rem;
+      margin-top: 3rem;
       display: block;
     }
 
-    /* ── Forecast card ── */
+    /* ── Intro text ── */
+    .intro-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Level cards ── */
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .level-card {
+      background: white;
+      border: 1px solid var(--warm2);
+      border-radius: 18px;
+      padding: 1.6rem 1.5rem 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 10px var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      animation: fadeUp 0.45s ease both;
+    }
+
+    .level-card:nth-child(1) { animation-delay: 0.05s; }
+    .level-card:nth-child(2) { animation-delay: 0.10s; }
+    .level-card:nth-child(3) { animation-delay: 0.15s; }
+    .level-card:nth-child(4) { animation-delay: 0.20s; }
+    .level-card:nth-child(5) { animation-delay: 0.25s; }
+
+    .level-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: 18px 18px 0 0;
+    }
+    .level-card:nth-child(1)::before { background: var(--warm2); }
+    .level-card:nth-child(2)::before { background: var(--warm3); }
+    .level-card:nth-child(3)::before { background: var(--warm4); }
+    .level-card:nth-child(4)::before { background: var(--warm5); }
+    .level-card:nth-child(5)::before { background: var(--warm3); }
+
+    .level-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--shadow);
+      border-color: var(--warm3);
+    }
+
+    .level-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--cream);
+      border: 1px solid var(--warm2);
+      border-radius: 99px;
+      padding: 0.15rem 0.5rem;
+      display: inline-block;
+      margin-bottom: 0.2rem;
+    }
+
+    .level-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.3;
+    }
+
+    .level-question {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--warm5);
+      line-height: 1.5;
+    }
+
+    .level-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .level-arrow {
+      font-size: 0.82rem;
+      color: var(--warm4);
+      margin-top: 0.3rem;
+      transition: transform 0.2s;
+    }
+    .level-card:hover .level-arrow { transform: translateX(4px); }
+
+    /* ── Forecast placeholder card ── */
     .forecast-card {
       background: white;
-      border: 1.5px solid var(--warm2);
-      border-radius: 4px;
+      border: 1px solid var(--warm2);
+      border-radius: 18px;
       padding: 1.4rem 1.6rem;
-      max-width: 440px;
-      box-shadow: 0 2px 8px var(--shadow);
-      animation: fadeUp 0.45s ease 0.1s both;
+      max-width: 460px;
+      box-shadow: 0 2px 10px var(--shadow);
     }
 
     .forecast-card-header {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .forecast-card-header svg {
-      width: 18px; height: 18px;
-      color: var(--warm4);
-      flex-shrink: 0;
+      margin-bottom: 0.7rem;
     }
 
     .forecast-card-header h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--brown);
     }
 
     .forecast-card p {
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 0.8rem;
     }
 
     .forecast-card .note {
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       color: var(--warm3);
       font-style: italic;
-    }
-
-    /* ── Viz description ── */
-    .viz-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 600px;
-      margin-bottom: 1.4rem;
-      animation: fadeUp 0.45s ease 0.15s both;
-    }
-
-    /* ── Viz grid ── */
-    .viz-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.1rem;
-    }
-
-    .viz-card {
-      background: white;
-      border: 1.5px solid var(--warm2);
-      border-radius: 4px;
-      padding: 1.3rem 1.3rem 1.2rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 2px 8px var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      animation: fadeUp 0.45s ease both;
-    }
-
-    .viz-card:nth-child(1) { animation-delay: 0.10s; }
-    .viz-card:nth-child(2) { animation-delay: 0.15s; }
-    .viz-card:nth-child(3) { animation-delay: 0.20s; }
-    .viz-card:nth-child(4) { animation-delay: 0.25s; }
-    .viz-card:nth-child(5) { animation-delay: 0.30s; }
-
-    .viz-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-    }
-    .viz-card:nth-child(1)::before { background: var(--warm3); }
-    .viz-card:nth-child(2)::before { background: var(--warm2); }
-    .viz-card:nth-child(3)::before { background: var(--warm4); }
-    .viz-card:nth-child(4)::before { background: var(--warm5); }
-    .viz-card:nth-child(5)::before { background: var(--warm3); }
-
-    .viz-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px var(--shadow);
-      border-color: var(--warm3);
-    }
-
-    .viz-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 0.5rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .level-badge {
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: var(--cream);
-      border: 1px solid var(--warm2);
-      border-radius: 2px;
-      padding: 0.15rem 0.4rem;
-      white-space: nowrap;
-    }
-
-    .ext-icon {
-      width: 13px; height: 13px;
-      color: var(--muted);
-      opacity: 0;
-      transition: opacity 0.2s;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .viz-card:hover .ext-icon { opacity: 1; }
-
-    .viz-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--brown);
-      line-height: 1.3;
-    }
-
-    .viz-card p {
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.55;
-      flex: 1;
     }
 
     /* ── Footer ── */
@@ -282,9 +274,8 @@
       z-index: 1;
       text-align: center;
       padding: 2rem;
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       color: var(--muted);
-      border-top: 1px solid var(--warm2);
       background: white;
     }
     footer a { color: var(--warm4); text-decoration: none; }
@@ -302,7 +293,7 @@
 <nav>
   <a class="nav-brand" href="index.html">AGRICAF</a>
   <a class="nav-back" href="index.html#commodities">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="15 18 9 12 15 6"/>
     </svg>
     All commodities
@@ -317,8 +308,8 @@
     <span class="commodity-emoji">🌾</span>
     <div>
       <h1>Wheat</h1>
-      <p>Global benchmark prices, supply shocks, and climate drivers.</p>
-      <span class="ra-badge">Mean RA: 0.82</span>
+      <p>Global prices, production levels, and the factors that move them.</p>
+      <span class="ra-badge">Forecast accuracy (RA): 0.82</span>
     </div>
   </div>
 
@@ -327,90 +318,76 @@
 
   <div class="forecast-card">
     <div class="forecast-card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4956B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
       </svg>
       <h3>Forecast Timeline</h3>
     </div>
-    <p>Observed prices vs. model predictions across multiple horizons, with an explicit future window where outcomes are not yet known.</p>
-    <span class="note">Available once the forecast API is connected.</span>
+    <p>Observed prices compared to model predictions across multiple time horizons, including a future window where outcomes are not yet known.</p>
+    <span class="note">Coming soon once the forecast feed is connected.</span>
   </div>
 
-  <!-- Interpretability Plots -->
-  <span class="section-label">Interpretability Plots</span>
+  <!-- Explanation plots -->
+  <span class="section-label">Understanding the Forecasts</span>
 
-  <p class="viz-desc">
-    Each figure opens full-screen with its own interactive controls for filtering
-    by forecast horizon, month, and feature. 
-    Use the built-in controls to choose the desired month and forecast horizon.
+  <p class="intro-text">
+    Each figure below opens a detailed, interactive chart. They are organised from the broadest view down to the most specific, so you can explore at whatever level of detail suits you best.
   </p>
 
-  <div class="viz-grid">
+  <div class="level-grid">
 
-    <a class="viz-card" href="shapley_global_wheat.html">
-      <div class="viz-card-top">
-        <span class="level-badge">Level 1</span>
-        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </div>
-      <h3>Shapley · Global Heatmap</h3>
-      <p>Aggregated Shapley importance across all years for each month × horizon cell.</p>
+    <!-- Level 1a: Global overview (SHAP) -->
+    <a class="level-card" href="shapley_global_wheat.html">
+      <span class="level-badge">Level 1 · Overview</span>
+      <span class="level-title">What drives wheat prices overall?</span>
+      <p class="level-question">"Which factors matter most, across all years and time horizons?"</p>
+      <p class="level-desc">A bird's-eye view showing which factors most consistently push wheat prices up or down. Covers all forecast months and horizons at once. Colours indicate the strength and direction of each factor's influence.</p>
+      <span class="level-arrow">Open chart →</span>
     </a>
 
-    <a class="viz-card" href="lime_global_wheat.html">
-      <div class="viz-card-top">
-        <span class="level-badge">Level 1</span>
-        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </div>
-      <h3>LIME · Global Heatmap</h3>
-      <p>Aggregated LIME importance across all years for each month × horizon cell.</p>
+    <!-- Level 1b: Global overview (LIME) -->
+    <a class="level-card" href="lime_global_wheat.html">
+      <span class="level-badge">Level 1 · Cross-check</span>
+      <span class="level-title">Confirming the big picture</span>
+      <p class="level-question">"Do different methods agree on which factors matter most?"</p>
+      <p class="level-desc">The same broad overview as above, but generated using a different analytical method. When both charts agree, you can be more confident in the result. Useful for verifying patterns seen in the overview.</p>
+      <span class="level-arrow">Open chart →</span>
     </a>
 
-    <a class="viz-card" href="shapley_local_wheat.html">
-      <div class="viz-card-top">
-        <span class="level-badge">Level 2</span>
-        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </div>
-      <h3>Shapley · Local Boxplots</h3>
-      <p>Year-level Shapley distributions per month × horizon with jitter overlay.</p>
+    <!-- Level 2a: Month and horizon specific (SHAP) -->
+    <a class="level-card" href="shapley_local_wheat.html">
+      <span class="level-badge">Level 2 · By month and horizon</span>
+      <span class="level-title">What drives prices for a specific month?</span>
+      <p class="level-question">"Which factors matter for the 3-month-ahead forecast made each September, and how consistent are they across years?"</p>
+      <p class="level-desc">Focuses on a chosen forecast month and time horizon. Shows how each factor's influence has varied from year to year, using a distribution of historical results. You can see both the typical pattern and the exceptions.</p>
+      <span class="level-arrow">Open chart →</span>
     </a>
 
-    <a class="viz-card" href="lime_local_wheat.html">
-      <div class="viz-card-top">
-        <span class="level-badge">Level 2</span>
-        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </div>
-      <h3>LIME · Local Boxplots</h3>
-      <p>Year-level LIME distributions per month × horizon with jitter overlay.</p>
+    <!-- Level 2b: Month and horizon specific (LIME) -->
+    <a class="level-card" href="lime_local_wheat.html">
+      <span class="level-badge">Level 2 · Cross-check</span>
+      <span class="level-title">Confirming the monthly pattern</span>
+      <p class="level-question">"Does the monthly picture hold up under a different method?"</p>
+      <p class="level-desc">The same month-and-horizon view as above, using a second analytical approach. Comparing the two charts helps identify which findings are robust and which may be method-specific.</p>
+      <span class="level-arrow">Open chart →</span>
     </a>
 
-    <a class="viz-card" href="shapley_pdp_wheat.html">
-      <div class="viz-card-top">
-        <span class="level-badge">Level 3</span>
-        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </div>
-      <h3>Shapley · Partial Dependence Plots</h3>
-      <p>Year-level Shapley based dependence of price forecasts on selected factors.</p>
+    <!-- Level 3: Factor specific (PDP) -->
+    <a class="level-card" href="shapley_pdp_wheat.html">
+      <span class="level-badge">Level 3 · Single factor</span>
+      <span class="level-title">How does one factor affect the forecast?</span>
+      <p class="level-question">"How do changes in, say, production levels translate into changes in the price forecast?"</p>
+      <p class="level-desc">Zooms in on a single factor to show how its value relates to its influence on the forecast. Reveals whether the relationship is simple and linear, or whether it changes at certain thresholds. Useful for understanding why a specific driver matters.</p>
+      <span class="level-arrow">Open chart →</span>
     </a>
 
-    <a class="viz-card" href="interactions_wheat.html">
-      <div class="viz-card-top">
-        <span class="level-badge">Interactions Levels 1+2+4</span>
-        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </div>
-      <h3>Feature Interactions</h3>
-      <p>Hierarchical Edge Bundling of pairwise feature interactions, coloured by forecast month.</p>
+    <!-- Level 4: Case specific (interactions) -->
+    <a class="level-card" href="interactions_wheat.html">
+      <span class="level-badge">Level 4 · Specific forecast</span>
+      <span class="level-title">Why did the model predict this, for this month?</span>
+      <p class="level-question">"Why did AGRICAF predict a 20% wheat price increase in March 2022?"</p>
+      <p class="level-desc">The most detailed view. Explains a single forecast for a chosen month, horizon, and year. Shows which factors pushed the prediction up or down, by how much, and how the observed values of those factors compare to historical norms. For forensic analysis of specific events.</p>
+      <span class="level-arrow">Open chart →</span>
     </a>
 
   </div>
